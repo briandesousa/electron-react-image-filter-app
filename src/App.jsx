@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import Button from '@mui/material/Button';
+import LandscapeIcon from '@mui/icons-material/Landscape';
+import FileOpenIcon from '@mui/icons-material/FileOpen';
+import { AppBar, Box, Container, CssBaseline, IconButton, Toolbar, Typography } from '@mui/material';
+import ImageFilter from 'react-image-filter';
+import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [imageFilter, setImageFilter] = useState(undefined);
+  const [imageUrl, setImageUrl] = useState('https://source.unsplash.com/RZrIJ8C0860');
+  
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <CssBaseline />
+      <Box sx={{ 
+        flexGrow: 1, 
+        whiteSpace: 'nowrap',
+        button: {
+          color: 'inherit',
+        }
+      }}>
+
+        <AppBar position="static">
+          <Container>
+            <Toolbar>
+              <LandscapeIcon sx={{ mr: 1 }} />
+              <Typography sx={{ mr: '0.5em', fontSize: '1.4em', flexGrow: 1 }}>Image Styler</Typography>
+              <Button onClick={() => setImageFilter(undefined)}>Original</Button>
+              <Button onClick={() => setImageFilter('invert')}>Invert</Button>
+              <Button onClick={() => setImageFilter('sepia')}>Sepia</Button>
+              <Button onClick={() => setImageFilter('duotone')}>Neon</Button>
+              <IconButton type='file' component='label' color='inherit'>
+                <FileOpenIcon />
+                <input type="file" hidden />
+              </IconButton>
+            </Toolbar>
+          </Container>
+        </AppBar>
+      </Box>
+
+      <Box sx={{ textAlign: 'center' }}>
+        <ImageFilter
+          image={imageUrl}
+          alt="image to be styled"
+          filter={imageFilter}
+          colorOne={ [104, 255, 0] }
+          colorTwo={ [255, 0, 92] }
+          style={{ margin: '2em' }}
+        />
+      </Box>
+
     </>
-  )
+  );
 }
 
 export default App
