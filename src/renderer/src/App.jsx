@@ -1,4 +1,3 @@
-
 import Button from '@mui/material/Button';
 import LandscapeIcon from '@mui/icons-material/Landscape';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
@@ -10,12 +9,17 @@ function App() {
 
   const [imageFilter, setImageFilter] = useState(undefined);
   const [imageUrl, setImageUrl] = useState('https://source.unsplash.com/RZrIJ8C0860');
-  
+
+  async function onOpenFileClick() {
+    const filePath = await window.electronAPI.openFile();
+    setImageUrl(filePath);
+  };
+
   return (
     <>
       <CssBaseline />
-      <Box sx={{ 
-        flexGrow: 1, 
+      <Box sx={{
+        flexGrow: 1,
         whiteSpace: 'nowrap',
         button: {
           color: 'inherit',
@@ -26,14 +30,17 @@ function App() {
           <Container>
             <Toolbar>
               <LandscapeIcon sx={{ mr: 1 }} />
-              <Typography sx={{ mr: '0.5em', fontSize: '1.4em', flexGrow: 1 }}>Image Styler</Typography>
+              <Typography sx={{
+                mr: '0.5em',
+                fontSize: '1.4em',
+                flexGrow: 1
+              }}>Image Styler</Typography>
               <Button onClick={() => setImageFilter(undefined)}>Original</Button>
               <Button onClick={() => setImageFilter('invert')}>Invert</Button>
               <Button onClick={() => setImageFilter('sepia')}>Sepia</Button>
               <Button onClick={() => setImageFilter('duotone')}>Neon</Button>
-              <IconButton type='file' component='label' color='inherit'>
+              <IconButton type='button' color='inherit' onClick={onOpenFileClick}>
                 <FileOpenIcon />
-                <input type="file" hidden />
               </IconButton>
             </Toolbar>
           </Container>
@@ -45,8 +52,8 @@ function App() {
           image={imageUrl}
           alt="image to be styled"
           filter={imageFilter}
-          colorOne={ [104, 255, 0] }
-          colorTwo={ [255, 0, 92] }
+          colorOne={[104, 255, 0]}
+          colorTwo={[255, 0, 92]}
           style={{ margin: '2em' }}
         />
       </Box>

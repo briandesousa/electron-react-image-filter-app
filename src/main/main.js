@@ -1,20 +1,33 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow } from 'electron';
+import { dialog, ipcMain } from 'electron';
+import * as path from 'path';
 
 let mainWindow;
 
+async function handleFileOpen() {
+  const { cancelled, filePaths } = await dialog.showOpenDialog({});
+  if (!cancelled) {
+    return filePaths[0];
+  }
+}
+
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 900,
-    useContentSize: true
+    webPreferences: {
+      preload: path.join(__dirname, '../preload/preload.js'),
+      webSecurity: false
+    }
   });
 
+  // Vite DEV server URL
   mainWindow.loadURL('http://localhost:5173')
-  mainWindow.webContents.openDevTools()
   mainWindow.on('closed', () => mainWindow = null);
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  ipcMain.handle('dialog:openFile', handleFileOpen);
+  createWindow();
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
