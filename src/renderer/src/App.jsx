@@ -34,7 +34,7 @@ function App() {
                 mr: '0.5em',
                 fontSize: '1.4em',
                 flexGrow: 1
-              }}>Image Styler</Typography>
+              }}>Image Filter</Typography>
               <Button onClick={() => setImageFilter(undefined)}>Original</Button>
               <Button onClick={() => setImageFilter('invert')}>Invert</Button>
               <Button onClick={() => setImageFilter('sepia')}>Sepia</Button>
