@@ -1,5 +1,4 @@
-import { app, BrowserWindow } from 'electron';
-import { dialog, ipcMain } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import * as path from 'path';
 
 let mainWindow;
