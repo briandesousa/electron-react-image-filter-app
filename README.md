@@ -1,6 +1,6 @@
 # Image Filter App
 
-A sample desktop app built with [Electron](https://www.electronjs.org) and [React](https://react.dev) for the purposes of demonstrating how to use [electron-vite](https://electron-vite.org).
+A sample desktop app built with [Electron](https://www.electronjs.org) and [React](https://react.dev) to demonstrating how to use [electron-vite](https://electron-vite.org).
 
 ![](image-filter-app.png)
 
