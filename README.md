@@ -1,8 +1,8 @@
-# React + Vite
+# Image Filter App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sample desktop app built with [Electron](https://www.electronjs.org) and [React](https://react.dev) for the purposes of demonstrating how to use [electron-vite](https://electron-vite.org).
 
-Currently, two official plugins are available:
+This app was built and tested on:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Node.js 18
+* Windows 10
